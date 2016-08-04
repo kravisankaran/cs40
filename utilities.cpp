@@ -55,9 +55,22 @@ void stringFix(char *string)
 
 }// fixing trailing newline and carriage return
 
-void tokenizer(char * string)
+int getNumber()
 {
-  char * pointer;
-  pointer = strtok(string, " ");
-  
+
+   char ch; int ret; int num =0;
+   while((ch= getchar())!= '\n') 
+   {
+    
+     if(ch >=48 && ch<=57)
+      {
+        
+        ret= (int) (ch -48) ;
+        
+      }
+      num *=10;
+      num += ret;
+   }
+   
+   return num;
 }

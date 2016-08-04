@@ -6,7 +6,7 @@
 #include <stdlib.h>
 void stringFix(char *string);
 bool checkforSpace(char * string);
-
+int getNumber();
 
 
 

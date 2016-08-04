@@ -32,12 +32,16 @@ void fileParser(Flight *flights, int *numFlights)
 
 void flightMenu(Flight *flights, int *numFlights)
 {
-  int num = 0;
+  int num;
+  char input[20];
   bool c= false;
+  char nameString[80];
   while(1)
   {
     printf("Flight number (0 = exit) :");
-    scanf("%d",&num);
+    num = getNumber();
+
+    
     c=checkFlight(flights,num, numFlights);
     if(!c)
     {
@@ -45,15 +49,18 @@ void flightMenu(Flight *flights, int *numFlights)
     }
     else
     {
-      //printf("Plane specifics\n");
-      flightDisplay(flights,numFlights);
-
-      //Call Flight
-      break;
+      printf("Please enter the name of the passenger:");
+      fgets(nameString,sizeof(nameString), stdin);
+      printf("%s",nameString);
+      flightrowDisplay(flights, num, numFlights);
+      //stringFix(nameString);
+      //call row printer
+    
     }
 
 
   }
+  free(nameString);
 }
 
 int main(int argc, char **argv)
@@ -72,7 +79,8 @@ int main(int argc, char **argv)
    int choice=0;
    int flag=0;
    //int num=0;
-   scanf("%d", &choice);
+   choice = getNumber();
+    printf("%d\n",choice);
    switch(choice)
    {
    	case 0:

@@ -18,17 +18,30 @@ void planeDisplay(Plane *plane)
 
 
 }
-void checkReserved
+void planeUpdate(Plane *plane, char * seatLetter, char * passengerName)
+{
+  rowsize= sizeof(int)* plane->rows;
+  colsize = sizeof(int)* plane->width;
+  plane->(passengers)= (Plane ***) malloc(sizeof(char **) * plane->reserved); 
+  
+}
+
+bool checkReserved(Plane *plane)
+{
+
+ 	return false;
+}
 
 void rowDisplay(Plane *plane)
 {
 	printf("Row#\t AB\n");
-	bool answer= false;
+	//bool answer= false;
 	int c;
 	for(int i=0; i<plane->rows; i++)
 	{
 	  c= i+1;
-      printf("%d", c); 
+      printf("%d\n", c); 
+
       checkReserved(plane);
 	}
 }

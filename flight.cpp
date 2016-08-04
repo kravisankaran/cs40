@@ -3,8 +3,23 @@
 /*void setFlightNumber(int flightNumber)
 {
 	flightNum=flightNumber;
-	printf("%d", flightNum);
+	printf("%d", fli
+  ghtNum);
 }*/
+void flightrowDisplay(Flight *flights, int num, int *numFlights)
+{
+  int number= *numFlights;
+  for(int i=0; i<number; i++)
+  {
+    if(num == flights[i].flightNum)
+      {
+       rowDisplay(flights[i].plane);
+       break;
+     }
+
+  }
+ 
+}
 
 bool checkFlight(Flight *flights, int search, int *numFlights)
 {
@@ -47,6 +62,9 @@ void lineParser(char * string, int i, int *numFlights, Flight *flights,int n)
   static int e=0;
   static int f =0;
   static int flag=0;
+  char seatLetter[80];
+  char passengerName[80];
+  int rows, width, reserved;
   pointer = strtok(string, "\n");
   if(i==1)
   {
@@ -67,17 +85,18 @@ void lineParser(char * string, int i, int *numFlights, Flight *flights,int n)
     	//printf("the array allocation will be for %d elements\n", a);
        //flights = (Flight*) mall>oc(sizeof(Flight) *(*numFlights));
        bool answer = checkforSpace(string);
-         int d=0;
-      int width, reserved;
+         
+      
        if(answer)
        {
+         flights[f].plane = (Plane*) malloc (sizeof(Plane));
          if(isspace(string[1]))
          {
            pointer = strtok(string, "\n");
            pointer = strtok(string, " ");
-           int rows = atoi(pointer);
-           int width;
-           int reserved;
+            rows = atoi(pointer);
+          
+           
            int flag =0;
            while(pointer!=NULL)
            {
@@ -96,12 +115,24 @@ void lineParser(char * string, int i, int *numFlights, Flight *flights,int n)
 
            }
 
-            flights[f].plane = (Plane*) malloc (sizeof(Plane));
-            planeCreate(flights[f].plane, rows, width, reserved);
+            
+             planeCreate(flights[f].plane, rows, width, reserved);
             f++;
+            
             // havent freed plane
            }
-       
+           else 
+           {
+             pointer = strtok(string, "\n");
+             pointer = strtok(string, " ");
+             strcpy(seatLetter,pointer);
+             pointer = strtok(NULL, "\n");
+             strcpy(passengerName,pointer);
+             planeUpdate(flights[f].plane,seatLetter, passengerName);
+             
+           }
+           
+        
        }
 
        else
@@ -116,6 +147,7 @@ void lineParser(char * string, int i, int *numFlights, Flight *flights,int n)
          
          //setFlightNumber(flightNumber);
        }
+
     }
     else
     {

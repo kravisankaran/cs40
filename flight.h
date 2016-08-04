@@ -24,7 +24,7 @@ void stringFix(char *string);
 void printNumber(Flight *flights);
 bool checkFlight(Flight *flights, int search, int *numFlights);
 void flightDisplay(Flight *flights, int *numFlights);
-
+void flightrowDisplay(Flight *flights, int num, int *numFlights);
 
 
 #endif
