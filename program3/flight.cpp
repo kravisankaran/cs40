@@ -1,4 +1,4 @@
-// Author: Sean Davis
+
 
 
 #include <iostream>
